@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    <title>Crear Celular</title>
+{% endblock %}
+
+{% block content %}
+  <h1 class="display-1 lh-1 mb-3">Crear Celular</h1>
+  
+  <form method="post" id="formulario_crear_celular">
+    {% csrf_token %}
+    {{form}}
+    <button type="submit">Crear</button>
+  </form>
+{% endblock %}

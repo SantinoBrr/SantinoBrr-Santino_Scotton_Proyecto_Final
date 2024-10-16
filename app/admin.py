@@ -1,3 +1,5 @@
 from django.contrib import admin
+from app.models import Celular
 
-# Register your models here.
+admin.site.register(Celular)
+
