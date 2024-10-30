@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}
+Editar Celular
+{% endblock title %}
+{% block content %}
+<h2>Editar Celular</h2>
+<form action="{% url 'app:editar_celular' celular.id %}" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+
+    <input type="submit" value="Enviar">
+</form>
+
+{% endblock  %}

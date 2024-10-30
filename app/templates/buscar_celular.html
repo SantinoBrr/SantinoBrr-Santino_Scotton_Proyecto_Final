@@ -11,7 +11,11 @@
   {% if celulares %}
   <ul>
     {% for celular in celulares %}
-      <li>{{ celular }}</li>
+      <li>{{ celular }}  
+        | <a href={% url "app:ver_celular" celular.id %}>Ver mas</a>|
+        | <a href={% url "app:editar_celular" celular.id %}>Editar</a>|
+        | <a href={% url "app:eliminar_celular" celular.id %}>Eliminar</a>|
+      </li>
     {% endfor %}
   </ul>
   {% else %}

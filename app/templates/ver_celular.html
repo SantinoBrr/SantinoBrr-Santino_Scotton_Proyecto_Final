@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}<title>Ver Celular</title>{% endblock %}
+{% block content %}
+  <h2>Ver Celular</h2>
+<ul>
+    <li>Marca: {{celular.marca}}</li>
+    <li>Modelo: {{celular.modelo}}</li>
+    <li>Tiempo de uso: {{celular.tiempo_de_uso}}</li>
+</ul>
+{% endblock %}

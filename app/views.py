@@ -2,7 +2,8 @@ from django.http import HttpResponse
 from django.template import Template, Context, loader
 from django.shortcuts import render, redirect
 from app.models import Celular
-from app.form import CelularForm, BuscarCelularForm
+from app.form import CelularForm, BuscarCelularForm, EditarCelularFormulario
+from django.contrib.auth.decorators import login_required
 
 
 def home(request):
@@ -44,3 +45,29 @@ def buscar_celular(request):
 
 def aboutme(request):
     return render(request,'about_me.html')
+
+def ver_celular(request, id):
+    celular= Celular.objects.get(id=id)
+    return render(request, 'ver_celular.html', {'celular':celular})
+
+def eliminar_celular(request, id):
+    celular = Celular.objects.get(id=id)
+    celular.delete()
+    return redirect('app:buscar_celular')
+
+def editar_celular(request, id):
+    celular = Celular.objects.get(id=id)
+    
+    formulario = EditarCelularFormulario(initial={'modelo': celular.modelo, 'marca': celular.marca, 'tiempo_de_uso':celular.tiempo_de_uso})
+    
+    if request.method == "POST":
+        formulario = EditarCelularFormulario(request.POST)
+        if formulario.is_valid():
+            celular.modelo = formulario.cleaned_data.get('modelo')
+            celular.marca = formulario.cleaned_data.get('marca')
+            celular.tiempo_de_uso = formulario.cleaned_data.get('tiempo_de_uso')
+            
+            celular.save()
+
+            return redirect('app:buscar_celular')
+    return render(request, 'editar_celular.html', {'celular': celular, 'form': formulario})
