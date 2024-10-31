@@ -11,6 +11,9 @@
 {% else %}
     <img src="ruta/a/imagen/por/defecto.png" alt="Avatar por defecto" height="100px">
 {% endif %}
+<p>Nombre: {{ username }}</p> 
+<p>Apellido: {{ last_name }}</p> 
+<p>Correo electrónico: {{ email }}</p>
 <p>Descripción: {{ descripcion }}</p>
 <p><a href="{% url 'usuarios:editar_perfil' %}">Editar Perfil</a></p>
 {% endblock %}

@@ -74,6 +74,8 @@ def perfil_usuario(request):
     datos_extra = DatosExtra.objects.get(user=request.user)
     return render(request, 'usuarios/perfil_usuario.html', {
         'username': request.user.username,
+        'last_name': request.user.last_name,
+        'email': request.user.email,
         'avatar': datos_extra.avatar.url if datos_extra.avatar else None,
         'descripcion': datos_extra.descripcion if hasattr(datos_extra, 'descripcion') else "Sin descripción"
     })
