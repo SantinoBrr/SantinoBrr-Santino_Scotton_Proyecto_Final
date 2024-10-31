@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+<title>Perfil de {{ username }}</title>
+{% endblock title %}
+
+{% block content %}
+<h1>Perfil de {{ username }}</h1>
+{% if avatar %}
+    <img src="{{ avatar }}" alt="Avatar de {{ username }}" height="100px">
+{% else %}
+    <img src="ruta/a/imagen/por/defecto.png" alt="Avatar por defecto" height="100px">
+{% endif %}
+<p>Descripción: {{ descripcion }}</p>
+<p><a href="{% url 'usuarios:editar_perfil' %}">Editar Perfil</a></p>
+{% endblock %}

@@ -62,3 +62,12 @@ def editar_perfil(request):
 class CambiarPassword(LoginRequiredMixin, PasswordChangeView):
     template_name = 'usuarios/cambiar_password.html'
     success_url = reverse_lazy('usuarios:editar_perfil')
+    
+@login_required
+def perfil_usuario(request):
+    datos_extra = DatosExtra.objects.get(user=request.user)
+    return render(request, 'usuarios/perfil_usuario.html', {
+        'username': request.user.username,
+        'avatar': datos_extra.avatar.url if datos_extra.avatar else None,
+        'descripcion': datos_extra.descripcion if hasattr(datos_extra, 'descripcion') else "Sin descripción"
+    })
